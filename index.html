@@ -3,14 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio · editorial minimal</title>
+  <title>Soheil Sarhang Zadeh — Portfolio</title>
   <style>
-    /* ---------- RESET & GLOBAL ---------- */
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
 
     body {
       background: #ffffff;
@@ -22,220 +17,274 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ---------- STARK MINIMAL: NO SHADOWS, NO RADII, NO DECOR ---------- */
-    img, div, section, header, figure {
-      border-radius: 0;
-      box-shadow: none;
-      border: none;
-      outline: none;
+    /* ---------- PAGE WRAPPER: the inset container ---------- */
+    .page {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 32px 48px 120px 48px;
     }
 
-    /* ---------- TYPOGRAPHY ---------- */
+    @media (max-width: 700px) {
+      .page { padding: 20px 20px 80px 20px; }
+    }
+
+    /*  HERO  */
+    .hero {
+      padding: 64px 0 96px 0;
+    }
+
+    .hero h1 {
+      font-size: clamp(40px, 7vw, 96px);
+      font-weight: 800;
+      line-height: 0.98;
+      letter-spacing: -0.02em;
+      text-transform: uppercase;
+      color: #000;
+      max-width: 14ch;
+    }
+
+    .hero .tagline {
+      margin-top: 24px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    /* PROJECT  */
+    .project {
+      padding-top: 64px;
+    }
+
     .project-title {
       font-size: 13px;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: 500;
-      color: #000;
-      margin-bottom: 0;          /* no extra space below title */
+      margin-bottom: 20px;
     }
 
+    /*  TILE ROW  */
+    /* 2-col, 3-col, 4-col variants  */
+    .tiles {
+      display: grid;
+      gap: 4px;
+      width: 100%;
+    }
+
+    .tiles.cols-2 { grid-template-columns: 1fr 1fr; }
+    .tiles.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .tiles.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    @media (max-width: 700px) {
+      .tiles.cols-2,
+      .tiles.cols-3,
+      .tiles.cols-4 { grid-template-columns: 1fr; }
+    }
+
+    .tile {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      background: #eaeaea;
+      overflow: hidden;
+    }
+
+    .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .tiles.square .tile { aspect-ratio: 1 / 1; }
+
+    .tile .num {
+      position: absolute;
+      top: 8px;
+      right: 10px;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      color: #000;
+      background: transparent;
+      mix-blend-mode: difference;  /* visible on any image */
+    }
+
+    /*  CAPTIONS UNDER TILES  */
+    .captions {
+      display: grid;
+      gap: 4px;
+      margin-top: 12px;
+    }
+
+    .captions.cols-2 { grid-template-columns: 1fr 1fr; }
+    .captions.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
+    .captions.cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    @media (max-width: 700px) {
+      .captions.cols-2,
+      .captions.cols-3,
+      .captions.cols-4 { grid-template-columns: 1fr; }
+    }
+
+    .caption {
+      padding-top: 10px;
+      border-top: 1px solid #000;
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
+
+    .caption .meta {
+      color: #000;
+      opacity: 0.65;
+      display: block;
+    }
+
+    .caption .name {
+      color: #000;
+      display: block;
+      margin-top: 4px;
+      font-weight: 500;
+    }
+
+    /*  DESCRIPTION PARAGRAPH (optional)  */
     .project-description {
+      margin-top: 32px;
       font-size: 15px;
       line-height: 1.7;
-      color: #000;
-      max-width: 100%;
-      font-weight: 400;
-      letter-spacing: 0.01em;
+      max-width: 60ch;
     }
 
-    /* ---------- HEADER (just name) ---------- */
-    .site-header {
-      padding: 48px 32px 32px 32px;   /* generous, left-aligned */
-      width: 100%;
-    }
-
-    .site-header h1 {
-      font-size: 16px;
-      font-weight: 400;
-      letter-spacing: 0.02em;
-      text-transform: none;
-      color: #000;
-      line-height: 1.3;
-    }
-
-    /* ---------- PROJECT BLOCK ---------- */
-    .project {
-      width: 100%;
-    }
-
-    /* breathing space above each project — lots of whitespace */
-    .project + .project {
-      margin-top: 96px;
-    }
-
-    /* first project after header gets consistent spacing */
-    .project:first-of-type {
-      margin-top: 32px;          /* header already has padding, not too tight */
-    }
-
-    /* title wrapper — left aligned, extra whitespace above via margin on project */
-    .project-title-wrapper {
-      padding: 0 32px 16px 32px;  /* left/right padding aligns with description */
-    }
-
-    /* ---------- FULL-WIDTH COLLAGE ---------- */
-    .collage {
-      display: grid;
-      width: 100%;
-      /* no gaps: images touch edge to edge */
-      gap: 0;
-      margin: 0;
-      padding: 0;
-      background: #ffffff;
-    }
-
-    .collage.two-col {
-      grid-template-columns: 1fr 1fr;
-    }
-
-    .collage.four-grid {
-      grid-template-columns: 1fr 1fr;
-      grid-template-rows: auto auto;
-    }
-
-    /* each image cell is a flexible block — we use placeholder divs */
-    .collage-item {
-      width: 100%;
-      height: 440px;           /* fixed height ~400–500px, consistent */
-      background: #eaeaea;     /* solid light gray placeholder */
-      object-fit: cover;       /* if real images are placed inside, this applies */
-      display: block;
-    }
-
-    /* when we switch to real <img>, they behave the same */
-    img.collage-item {
-      object-fit: cover;
-      width: 100%;
-      height: 440px;
-      background: #eaeaea;     /* fallback while loading */
-      display: block;
-    }
-
-    /* ---------- DESCRIPTION BELOW COLLAGE ---------- */
-    .project-description-wrapper {
-      background: #ffffff;
-      width: 100%;
-      padding: 24px 32px 28px 32px;  /* 24–32px left/right */
-      margin: 0;
-    }
-
-    /* ---------- RESPONSIVE TWEAK (optional but keeps layout clean) ---------- */
-    @media (max-width: 600px) {
-      .site-header {
-        padding: 32px 20px 24px 20px;
-      }
-      .project-title-wrapper {
-        padding: 0 20px 12px 20px;
-      }
-      .project-description-wrapper {
-        padding: 20px 20px 24px 20px;
-      }
-      .collage-item,
-      img.collage-item {
-        height: 280px;          /* shorter on narrow screens, still substantial */
-      }
-      .project + .project {
-        margin-top: 72px;
-      }
-    }
-
-    /* no hover, no transitions, no animations */
-    a, button, .collage-item, img {
-      transition: none;
-      animation: none;
-    }
-
-    /* enforce pure black/white — no colors */
-    ::selection {
-      background: #000;
-      color: #fff;
-    }
-
-    /* optional: remove any list styling not needed */
-    ul, ol {
-      list-style: none;
-    }
+    ::selection { background: #000; color: #fff; }
   </style>
 </head>
 <body>
 
-  <!-- HEADER: only name, nothing else -->
-  <header class="site-header">
-    <h1>Alex Morgan</h1>
-  </header>
+  <div class="page">
 
-  <!-- PROJECT 1: two‑photo collage (2 columns) -->
-  <section class="project">
-    <div class="project-title-wrapper">
-      <div class="project-title">Riverside Study</div>
-    </div>
-    <!-- full-width grid, two columns, no gaps -->
-    <div class="collage two-col">
-      <div class="collage-item" aria-label="placeholder image 1"></div>
-      <div class="collage-item" aria-label="placeholder image 2"></div>
-    </div>
-    <!-- white rectangle with prose -->
-    <div class="project-description-wrapper">
-      <div class="project-description">
-        Documentation of the riverbank over four seasons. A quiet record of change.
+    <!-- HERO -->
+    <header class="hero">
+      <h1>Soheil<br>Sarhang<br>Zadeh</h1>
+      <p class="tagline">
+        Control theory · robotics · 3D printing<br>
+        Selected work
+      </p>
+    </header>
+
+    <!-- PROJECT 1 -->
+    <section class="project">
+      <div class="project-title">Field Oriented Control for 3D printers — WIP</div>
+
+      <div class="tiles cols-2">
+        <div class="tile">
+          <span class="num">001</span>
+          <img src="misc-diags.png" alt="">
+        </div>
+        <div class="tile">
+          <span class="num">002</span>
+          <img src="measure-3dp.jpeg" alt="">
+        </div>
       </div>
-    </div>
+
+      <div class="captions cols-2">
+        <div class="caption">
+          <span class="meta">Software and design choices</span>
+          <span class="name">Chose motor driver and interfaced with the printer's firmware </span>
+        </div>
+        <div class="caption">
+          <span class="meta">Hardware</span>
+          <span class="name">Designing 3D printed mount for encoder</span>
+        </div>
+      </div>
+
+      <p class="project-description">
+        Currently implementing closed loop stepper control for 3D printing. Using STM32 and SimpleFOC SDK, A4950 driver and magnetic encoder.  Work in progress — Firmware interface is functionnal, hardware arriving soon.
+      </p>
+    </section>
+
+    <!-- PROJECT 2 -->
+    <section class="project">
+      <div class="project-title">Transforming a 3D printer into PCB inspection machine</div>
+
+      <div class="tiles cols-3">
+        <div class="tile">
+          <span class="num">003</span>
+          <img src="pick and place.jpeg" alt="">
+        </div>
+        <div class="tile">
+          <span class="num">004</span>
+          <img src="microscope.jpeg" alt="">
+        </div>
+        <div class="tile">
+          <span class="num">005</span>
+          <img src="rpi cam.jpeg" alt="">
+        </div>
+      </div>
+
+      <div class="captions cols-3">
+        <div class="caption"><span class="meta">Assembly</span><span class="name">Manual Pick and Place machine</span></div>
+        <div class="caption"><span class="meta">Previous solution</span><span class="name">Manual Optical Inspection</span></div>
+        <div class="caption"><span class="meta">Delivered solution</span><span class="name">Camera assembly scanning a board </span></div>
+      </div>
+    </section>
+    <p class="project-description">
+      At my last internship, I observed a PCB fabrication lab, took part in solder mask application and supervised the Pick and Place machine and the reflow oven.
+
+    </p>
+    <p class="project-description">
+
+      Next, I transformed a 3D printer gantry into an Automatic Optical Inspection machine for the PCBs. I used a Raspberry Pi to automate the S-curve movement and synchronized it with the camera. Precise control of the machine let us generate high quality datasets for the ML team.
   </section>
 
-  <!-- PROJECT 2: four‑photo collage (2x2 grid) -->
-  <section class="project">
-    <div class="project-title-wrapper">
-      <div class="project-title">Concrete Poetry</div>
+
+<!-- PROJECT 3 -->
+<section class="project">
+  <div class="project-title">Audio amplifier board</div>
+
+  <div class="tiles cols-3 square">
+    <div class="tile">
+      <span class="num">003</span>
+      <img src="schematic.webp" alt="Schematic sent to fab">
     </div>
-    <div class="collage four-grid">
-      <div class="collage-item" aria-label="placeholder image 1"></div>
-      <div class="collage-item" aria-label="placeholder image 2"></div>
-      <div class="collage-item" aria-label="placeholder image 3"></div>
-      <div class="collage-item" aria-label="placeholder image 4"></div>
+    <div class="tile">
+      <span class="num">004</span>
+      <img src="render.png" alt="Populated amplifier PCB">
     </div>
-    <div class="project-description-wrapper">
-      <div class="project-description">
-        Urban fragments — type, texture, and repetition. Shot on 35mm.<br>
-        Commissioned for the 2024 architecture biennale.
-      </div>
+        <div class="tile">
+      <span class="num">004</span>
+      <img src="render.webp" alt="Populated amplifier PCB">
     </div>
+  </div>
+
+  <div class="captions cols-3">
+    <div class="caption">
+      <span class="meta">Schematic</span>
+      <span class="name">Design sent for fabrication</span>
+    </div>
+
+    <div class="caption">
+      <span class="meta">Schematic</span>
+      <span class="name">Render of board</span>
+    </div>
+
+    <div class="caption">
+      <span class="meta">Assembly</span>
+      <span class="name">Populated board</span>
+    </div>
+
+  </div>
+
+
+  </p>
+</section>
+    <p class="project-description">
+      I wanted to turn a vintage transistor radio into a Bluetooth speaker, while conserving its outer appearance. To do that, I designed my first PCB in EasyEDA, based around the TDA7379. I then ordered the board and soldered on the components and the auxiliary circuits (USB charging and Bluetooth module).
+
   </section>
 
-  <!-- PROJECT 3: another two‑photo example -->
-  <section class="project">
-    <div class="project-title-wrapper">
-      <div class="project-title">Still / Life</div>
-    </div>
-    <div class="collage two-col">
-      <div class="collage-item" aria-label="placeholder image 1"></div>
-      <div class="collage-item" aria-label="placeholder image 2"></div>
-    </div>
-    <div class="project-description-wrapper">
-      <div class="project-description">
-        A series of domestic interiors. No people, just the weight of objects and light.
-      </div>
-    </div>
-  </section>
-
-  <!--
-    To use real photos:
-    1. Replace each <div class="collage-item" ...></div> with:
-       <img class="collage-item" src="your-photo.jpg" alt="description">
-    2. Adjust the number of columns/grids accordingly (2-col or 4-grid).
-    3. Edit the project titles and descriptions.
-    That's it — the styles will adapt (img.collage-item uses object-fit cover).
-  -->
+  </div>
 
 </body>
 </html>
