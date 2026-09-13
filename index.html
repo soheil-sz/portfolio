@@ -17,7 +17,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    /* ---------- PAGE WRAPPER: the inset container ---------- */
+    /*  PAGE WRAPPER*/
     .page {
       max-width: 1400px;
       margin: 0 auto;
@@ -30,7 +30,8 @@
 
     /*  HERO  */
     .hero {
-      padding: 64px 0 96px 0;
+      padding: 64px 0;
+      position: relative;
     }
 
     .hero h1 {
@@ -38,19 +39,51 @@
       font-weight: 800;
       line-height: 0.98;
       letter-spacing: -0.02em;
-      text-transform: uppercase;
       color: #000;
       max-width: 14ch;
     }
 
+
     .hero .tagline {
-      margin-top: 24px;
+      margin-top: 16px;
       font-size: 13px;
       letter-spacing: 0.08em;
       text-transform: uppercase;
       line-height: 1.5;
     }
+    .contact {
+      position: absolute;
+      top: 64px;
+      right: 0;
 
+      display: flex;
+      gap: 24px;
+
+      font-size: 13px;
+      line-height: 1.4;
+      letter-spacing: 0.04em;
+      white-space: nowrap;
+      font-family: monospace;
+      padding-top:9px;
+
+    }
+
+    .contact a {
+      color: #000;
+      text-decoration: none;
+    }
+
+    .contact a:hover {
+      text-decoration: underline;
+    }
+
+    .hero .tagline {
+      margin-top: 16px;
+      font-size: 13px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.5;
+    }
     /* PROJECT  */
     .project {
       padding-top: 1px;
@@ -61,11 +94,14 @@
       letter-spacing: 0.08em;
       text-transform: uppercase;
       font-weight: 500;
-      margin-bottom: 40px;
+      margin-bottom: 32px;
+      border-bottom: 1px solid #000;
+      padding-bottom: 8px;
+
     }
 
     /*  TILE ROW  */
-    /* 2-col, 3-col, 4-col variants  */
+    /* 2 3 5 cols  */
     .tiles {
       display: grid;
       gap: 4px;
@@ -90,10 +126,6 @@
       overflow: hidden;
     }
 
-    .tile:first-of-type {
-  background: #f6f5f3 ; /* Removes background behind */
-    }
-
     .tile img {
       width: 100%;
       height: 100%;
@@ -114,6 +146,35 @@
       mix-blend-mode: difference;  /* visible on any image */
     }
 
+    .tile.transparent-bg {
+  background: #f6f5f3;
+    }
+
+    .foc-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4px;
+    }
+
+    .foc-left {
+      display: grid;
+      grid-template-rows: 1fr 2fr;
+      gap: 4px;
+    }
+
+    .foc-layout .tile {
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      overflow: hidden;
+    }
+
+    .foc-layout .tile img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
     /*  CAPTIONS UNDER TILES  */
     .captions {
       display: grid;
@@ -132,7 +193,7 @@
     }
 
     .caption {
-      padding-top: 10px;
+      padding-top: 8px;
       border-top: 1px solid #000;
       font-size: 11px;
       letter-spacing: 0.08em;
@@ -159,7 +220,7 @@
       font-size: 15px;
       line-height: 1.7;
       max-width: 60ch;
-      margin-bottom: 32px;
+      margin-bottom: 64px;
 
     }
 
@@ -199,7 +260,7 @@
       transform: scale(1);
     }
 
-    /* close button — minimalist gray circle, top-right */
+    /* close button  */
     .lightbox-close {
       position: absolute;
       top: 24px;
@@ -217,82 +278,138 @@
       transition: background 180ms ease;
     }
 
-    .lightbox-close::before,
-    .lightbox-close::after {
-      content: "";
-      position: absolute;
-      width: 16px;
-      height: 1.5px;
-      background: #000;
-    }
-
     .lightbox-close::before { transform: rotate(45deg); }
     .lightbox-close::after  { transform: rotate(-45deg); }
 
-    .lightbox-close:hover { background: #dcdcdc; }
+    .lightbox-close:hover {
+      background: #dcdcdc;
+    }
 
     /* make tile images feel clickable, but no visual chrome */
 
     /* when lightbox is open, stop page scrolling */
-    body.no-scroll { overflow: hidden; }
+    body.no-scroll {
+      overflow: hidden;
+    }
+
+    .copy-email {
+      background: none;
+      border: none;
+      padding: 0;
+      font: inherit;
+      color: #000;
+      cursor: pointer;
+    }
+
+    .copy-email:hover {
+      text-decoration: underline;
+    }
 
     @media (max-width: 700px) {
-      .lightbox-close { top: 16px; right: 16px; width: 36px; height: 36px; }
+      .lightbox-close {
+        top: 16px;
+        right: 16px;
+        width: 36px;
+        height: 36px;
+      }
     }
+
     body {
-  background-color: #f4efeb;
-
+      background-color: #f4efeb;
+    }
+::selection {
+  background: #dcdcdc;
+  color: #000;
 }
-}
 
 
 
-    ::selection { background: #ffff; color: #f4efeb; }
-  </style>
+    </style>
+
+
+
 </head>
 <body>
 
   <div class="page">
 
     <!-- HERO -->
-    <header class="hero">
-      <h1>Soheil<br>Sarhang<br>Zadeh</h1>
-      <p class="tagline">
-        Control theory · robotics · 3D printing
-      </p>
-    </header>
+<header class="hero">
 
-    <!-- PROJECT 1 -->
-    <section class="project">
-      <div class="project-title">Field Oriented Control for 3D printers — work in progress</div>
+  <h1>Soheil<br>SARHANG ZADEH</h1>
 
-      <div class="tiles cols-2">
-        <div class="tile">
-          <span class="num">001</span>
-          <img src="img/white_lines.png" alt="">
+<div class="contact">
+  <button class="copy-email" onclick="copyEmail()">soheil.sz@outlook.com</button>
 
-        </div>
-        <div class="tile">
-          <span class="num">002</span>
-          <img src="img/measure-3dp.jpeg" alt="">
-        </div>
+  <a href=""tel:+33XXXXXXXXX"">+33 07 68 98 02 00</a>
+
+  <a href="https://www.linkedin.com/in/soheil-sz" target="_blank" rel="noopener">
+    LinkedIn
+  </a>
+</div>
+
+  <p class="tagline">
+    Control theory · robotics · electrical engineering
+  </p>
+
+</header>
+<section class="project">
+
+  <div class="project-title">
+    Field Oriented Control for 3D printers — work in progress
+  </div>
+
+  <div class="foc-layout">
+
+    <!-- LEFT: 1/3 + 2/3 -->
+    <div class="foc-left">
+
+      <!-- 1/3 -->
+      <div class="tile transparent-bg">
+        <span class="num">001</span>
+        <img src="img/pos-plot.png" alt="">
       </div>
 
-      <div class="captions cols-2">
-        <div class="caption">
-          <span class="meta">Software and design choices</span>
-          <span class="name">Chose motor driver and interfaced with the printer's firmware </span>
-        </div>
-        <div class="caption">
-          <span class="meta">Hardware</span>
-          <span class="name">Designing 3D printed mount for encoder</span>
-        </div>
+      <!-- 2/3 -->
+      <div class="tile transparent-bg">
+        <span class="num">002</span>
+        <img src="img/datasheet.png" alt="">
       </div>
 
-      <p class="project-description">
-        I'm currently implementing native closed loop stepper control for 3D printing. Using STM32 and SimpleFOC SDK, A4950 driver and magnetic encoder.  Work in progress — Firmware interface is functionnal and the hardware arriving soon!
-      </p>
-    </section>
+    </div>
+
+    <!-- RIGHT: full height -->
+    <div class="tile">
+      <span class="num">003</span>
+      <img src="img/measure-3dp.jpeg" alt="">
+    </div>
+
+  </div>
+
+  <div class="captions cols-2">
+    <div class="caption">
+      <span class="meta">Software and design choices</span>
+      <span class="name">
+        Chose motor driver and interfaced with the printer's firmware
+      </span>
+    </div>
+
+    <div class="caption">
+      <span class="meta">Hardware</span>
+      <span class="name">
+        Designing 3D printed mount for encoder
+      </span>
+    </div>
+  </div>
+
+  <p class="project-description">
+    I'm currently implementing native closed loop stepper control for 3D printing.
+    Using STM32 and SimpleFOC SDK, A4950 driver and magnetic encoder.
+    Work in progress — This firmware interface is functional and the hardware arriving soon!
+  </p>
+
+</section>
+
 
     <!-- PROJECT 2 -->
     <section class="project">
@@ -368,7 +485,7 @@
   </p>
 </section>
     <p class="project-description">
-      I wanted to turn a vintage transistor radio into a Bluetooth speaker, while conserving its outer appearance. To do that, I designed my first PCB in EasyEDA, based around the TDA7379. I then ordered the board and soldered on the components and the auxiliary circuits (USB charging and Bluetooth module).
+      I wanted to turn a vintage transistor radio into a Bluetooth speaker, while conserving its outer appearance. To do that, I designed my first PCB in EasyEDA, based around the TDA7379 amplifier chip. I then ordered the board and soldered on the components and the auxiliary circuits (USB charging and Bluetooth module).
 
   </section>
 
@@ -416,6 +533,22 @@
     });
   })();
 </script>
+
+<script>
+function copyEmail() {
+  const email = "soheil.sz@outlook.com";
+  const button = document.querySelector(".copy-email");
+
+  navigator.clipboard.writeText(email);
+
+  button.textContent = "Copied!";
+
+  setTimeout(() => {
+    button.textContent = email;
+  }, 1500);
+}
+</script>
+
 
 </body>
 </html>
