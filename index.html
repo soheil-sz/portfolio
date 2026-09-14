@@ -1,554 +1,782 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Soheil Sarhang Zadeh — Portfolio</title>
-  <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Soheil Sarhang Zadeh — Portfolio</title>
+      <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+         }
 
-    body {
-      background: #ffffff;
-      color: #000000;
-      font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
-      font-weight: 400;
-      line-height: 1.4;
-      -webkit-font-smoothing: antialiased;
-      -moz-osx-font-smoothing: grayscale;
-    }
+         body {
+            background: #ffffff;
+            color: #000000;
+            font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
+               Helvetica, Arial, sans-serif;
+            font-weight: 400;
+            line-height: 1.4;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+         }
 
-    /*  PAGE WRAPPER*/
-    .page {
-      max-width: 1400px;
-      margin: 0 auto;
-      padding: 32px 48px 120px 48px;
-    }
+         /*  PAGE WRAPPER*/
+         .page {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 48px 120px 48px;
+         }
 
-    @media (max-width: 700px) {
-      .page { padding: 20px 20px 80px 20px; }
-    }
+         @media (max-width: 700px) {
+            .page {
+               padding: 20px 20px 80px 20px;
+            }
+         }
 
-    /*  HERO  */
-    .hero {
-      padding: 64px 0;
-      position: relative;
-    }
+         /*  HERO  */
+         .hero {
+            padding: 64px 0;
+            position: relative;
+         }
 
-    .hero h1 {
-      font-size: clamp(40px, 7vw, 96px);
-      font-weight: 800;
-      line-height: 0.98;
-      letter-spacing: -0.02em;
-      color: #000;
-      max-width: 14ch;
-    }
+         .hero h1 {
+            font-size: clamp(40px, 7vw, 96px);
+            font-weight: 800;
+            line-height: 0.98;
+            letter-spacing: -0.02em;
+            color: #000;
+            max-width: 14ch;
+         }
+
+         .hero .tagline {
+            margin-top: 16px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.5;
+         }
+         .contact {
+            position: absolute;
+            top: 64px;
+            right: 0;
+
+            display: flex;
+            gap: 24px;
+
+            font-size: 13px;
+            line-height: 1.4;
+            letter-spacing: 0.04em;
+            white-space: nowrap;
+            font-family: monospace;
+            padding-top: 9px;
+         }
+
+         .contact a {
+            color: #000;
+            text-decoration: none;
+         }
+
+         .hero .tagline {
+            margin-top: 16px;
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.5;
+         }
+         /* PROJECT  */
+         .project {
+            padding-top: 1px;
+         }
+
+         .project-title {
+            font-size: 13px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 500;
+            margin-bottom: 32px;
+            border-bottom: 1px solid #000;
+            padding-bottom: 8px;
+         }
+
+         /*  TILE ROW  */
+         /* 2 3 5 cols  */
+         .tiles {
+            display: grid;
+            gap: 4px;
+            width: 100%;
+         }
+
+         .tiles.cols-2 {
+            grid-template-columns: 1fr 1fr;
+         }
+         .tiles.cols-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+         }
+         .tiles.cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+         }
+
+         @media (max-width: 700px) {
+            .tiles.cols-2,
+            .tiles.cols-3,
+            .tiles.cols-4 {
+               grid-template-columns: 1fr;
+            }
+         }
+
+         .tile {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            background: #eaeaea;
+            overflow: hidden;
+         }
+
+         .tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+         }
+
+         .tiles.square .tile {
+            aspect-ratio: 1 / 1;
+         }
+
+         .tile .num {
+            position: absolute;
+            top: 8px;
+            right: 10px;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            color: #000;
+            background: transparent;
+            mix-blend-mode: difference; /* visible on any image */
+         }
+
+         .tile.transparent-bg {
+            background: #f6f5f3;
+         }
+
+         .foc-layout {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4px;
+         }
+
+         .foc-left {
+            display: grid;
+            grid-template-rows: 1fr 2fr;
+            gap: 4px;
+         }
+
+         .foc-layout .tile {
+            width: 100%;
+            height: 100%;
+            aspect-ratio: auto;
+            overflow: hidden;
+         }
+
+         .foc-layout .tile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+         }
+
+         /*  CAPTIONS UNDER TILES  */
+         .captions {
+            display: grid;
+            gap: 4px;
+            margin-top: 12px;
+         }
+
+         .captions.cols-2 {
+            grid-template-columns: 1fr 1fr;
+         }
+         .captions.cols-3 {
+            grid-template-columns: 1fr 1fr 1fr;
+         }
+         .captions.cols-4 {
+            grid-template-columns: repeat(4, 1fr);
+         }
+
+         @media (max-width: 700px) {
+            .captions.cols-2,
+            .captions.cols-3,
+            .captions.cols-4 {
+               grid-template-columns: 1fr;
+            }
+         }
+
+         .caption {
+            padding-top: 8px;
+            border-top: 1px solid #000;
+            font-size: 11px;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            line-height: 1.5;
+         }
+
+         .caption .meta {
+            color: #000;
+            opacity: 0.65;
+            display: block;
+         }
+
+         .caption .name {
+            color: #000;
+            display: block;
+            margin-top: 4px;
+            font-weight: 500;
+         }
+
+         /*  DESCRIPTION PARAGRAPH (optional)  */
+         .project-description {
+            margin-top: 32px;
+            font-size: 15px;
+            line-height: 1.7;
+            max-width: 60ch;
+            margin-bottom: 64px;
+         }
+
+         /*  LIGHTBOX -- */
+         .lightbox {
+            position: fixed;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.96);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 999;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 220ms ease;
+         }
+
+         .lightbox.open {
+            opacity: 1;
+            pointer-events: auto;
+         }
+
+         .lightbox img {
+            max-width: 92vw;
+            max-height: 92vh;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            /* animation */
+            transform: scale(0.96);
+            transition: transform 260ms cubic-bezier(0.2, 0, 0, 1);
+         }
+
+         .lightbox.open img {
+            transform: scale(1);
+         }
+
+         /* close button  */
+         .lightbox-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: #eaeaea;
+            border: none;
+            padding: 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 180ms ease;
+         }
+
+         .lightbox-close::before {
+            transform: rotate(45deg);
+         }
+         .lightbox-close::after {
+            transform: rotate(-45deg);
+         }
+
+         .lightbox-close:hover {
+            background: #dcdcdc;
+         }
+
+         /* when lightbox is open, stop page scrolling */
+         body.no-scroll {
+            overflow: hidden;
+         }
+
+         .copy-email {
+            background: none;
+            border: none;
+            padding: 0;
+            font: inherit;
+            color: #000;
+            cursor: pointer;
+         }
+
+         .copy-email:hover {
+            text-decoration: underline;
+         }
+
+         @media (max-width: 700px) {
+            .lightbox-close {
+               top: 16px;
+               right: 16px;
+               width: 36px;
+               height: 36px;
+            }
+         }
 
 
-    .hero .tagline {
-      margin-top: 16px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-    .contact {
-      position: absolute;
-      top: 64px;
-      right: 0;
+              /* CV SLIDE-IN */
 
-      display: flex;
-      gap: 24px;
-
-      font-size: 13px;
-      line-height: 1.4;
-      letter-spacing: 0.04em;
-      white-space: nowrap;
-      font-family: monospace;
-      padding-top:9px;
-
-    }
-
-    .contact a {
-      color: #000;
-      text-decoration: none;
-    }
-
-    .contact a:hover {
-      text-decoration: underline;
-    }
-
-    .hero .tagline {
-      margin-top: 16px;
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-    /* PROJECT  */
-    .project {
-      padding-top: 1px;
-    }
-
-    .project-title {
-      font-size: 13px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-bottom: 32px;
-      border-bottom: 1px solid #000;
-      padding-bottom: 8px;
-
-    }
-
-    /*  TILE ROW  */
-    /* 2 3 5 cols  */
-    .tiles {
-      display: grid;
-      gap: 4px;
-      width: 100%;
-    }
-
-    .tiles.cols-2 { grid-template-columns: 1fr 1fr; }
-    .tiles.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-    .tiles.cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-    @media (max-width: 700px) {
-      .tiles.cols-2,
-      .tiles.cols-3,
-      .tiles.cols-4 { grid-template-columns: 1fr; }
-    }
-
-    .tile {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 3 / 4;
-      background: #eaeaea;
-      overflow: hidden;
-    }
-
-    .tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      display: block;
-    }
-
-    .tiles.square .tile { aspect-ratio: 1 / 1; }
-
-    .tile .num {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      color: #000;
-      background: transparent;
-      mix-blend-mode: difference;  /* visible on any image */
-    }
-
-    .tile.transparent-bg {
-  background: #f6f5f3;
-    }
-
-    .foc-layout {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 4px;
-    }
-
-    .foc-left {
-      display: grid;
-      grid-template-rows: 1fr 2fr;
-      gap: 4px;
-    }
-
-    .foc-layout .tile {
-      width: 100%;
-      height: 100%;
-      aspect-ratio: auto;
-      overflow: hidden;
-    }
-
-    .foc-layout .tile img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    /*  CAPTIONS UNDER TILES  */
-    .captions {
-      display: grid;
-      gap: 4px;
-      margin-top: 12px;
-    }
-
-    .captions.cols-2 { grid-template-columns: 1fr 1fr; }
-    .captions.cols-3 { grid-template-columns: 1fr 1fr 1fr; }
-    .captions.cols-4 { grid-template-columns: repeat(4, 1fr); }
-
-    @media (max-width: 700px) {
-      .captions.cols-2,
-      .captions.cols-3,
-      .captions.cols-4 { grid-template-columns: 1fr; }
-    }
-
-    .caption {
-      padding-top: 8px;
-      border-top: 1px solid #000;
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      line-height: 1.5;
-    }
-
-    .caption .meta {
-      color: #000;
-      opacity: 0.65;
-      display: block;
-    }
-
-    .caption .name {
-      color: #000;
-      display: block;
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    /*  DESCRIPTION PARAGRAPH (optional)  */
-    .project-description {
-      margin-top: 32px;
-      font-size: 15px;
-      line-height: 1.7;
-      max-width: 60ch;
-      margin-bottom: 64px;
-
-    }
-
-
-    /*  LIGHTBOX -- */
-    .lightbox {
-      position: fixed;
-      inset: 0;
-      background: rgba(255, 255, 255, 0.96);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 220ms ease;
-    }
-
-    .lightbox.open {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
-    .lightbox img {
-      max-width: 92vw;
-      max-height: 92vh;
-      width: auto;
-      height: auto;
-      object-fit: contain;
-      display: block;
-      /* start slightly smaller, scale up on open */
-      transform: scale(0.96);
-      transition: transform 260ms cubic-bezier(0.2, 0, 0, 1);
-    }
-
-    .lightbox.open img {
-      transform: scale(1);
-    }
-
-    /* close button  */
-    .lightbox-close {
-      position: absolute;
-      top: 24px;
-      right: 24px;
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #eaeaea;
-      border: none;
-      padding: 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: background 180ms ease;
-    }
-
-    .lightbox-close::before { transform: rotate(45deg); }
-    .lightbox-close::after  { transform: rotate(-45deg); }
-
-    .lightbox-close:hover {
-      background: #dcdcdc;
-    }
-
-    /* make tile images feel clickable, but no visual chrome */
-
-    /* when lightbox is open, stop page scrolling */
-    body.no-scroll {
-      overflow: hidden;
-    }
-
-    .copy-email {
-      background: none;
-      border: none;
-      padding: 0;
-      font: inherit;
-      color: #000;
-      cursor: pointer;
-    }
-
-    .copy-email:hover {
-      text-decoration: underline;
-    }
-
-    @media (max-width: 700px) {
-      .lightbox-close {
-        top: 16px;
-        right: 16px;
-        width: 36px;
-        height: 36px;
+      .cv-link {
+        background: none;
+        border: none;
+        padding: 0;
+        font: inherit;
+        color: #000;
+        cursor: pointer;
       }
-    }
 
-    body {
-      background-color: #f4efeb;
-    }
-::selection {
-  background: #dcdcdc;
-  color: #000;
-}
+      .cv-link:hover {
+        text-decoration: underline;
+      }
+
+      .cv-panel {
+        position: fixed;
+        inset: 0;
+        z-index: 1000;
+        background: rgba(0, 0, 0, 0.08);
+
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+
+        transition: opacity 250ms ease, visibility 250ms ease;
+      }
+
+      .cv-panel.open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+      }
+
+      .cv-panel-inner {
+        position: absolute;
+        top: 0;
+        right: 0;
+
+        width: min(900px, 92vw);
+        height: 100vh;
+
+        background: #f4ecdc;
+
+        transform: translateX(100%);
+        transition: transform 420ms cubic-bezier(0.2, 0, 0, 1);
+
+        display: flex;
+        flex-direction: column;
+      }
+
+      .cv-panel.open .cv-panel-inner {
+        transform: translateX(0);
+      }
+
+      .cv-header {
+        height: 64px;
+        padding: 0 24px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        border-bottom: 1px solid #000;
+        flex-shrink: 0;
+      }
+
+      .cv-title {
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      .cv-close {
+        background: none;
+        border: none;
+        padding: 0;
+
+        font: inherit;
+        font-size: 13px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+
+        cursor: pointer;
+      }
+
+      .cv-close:hover {
+        text-decoration: underline;
+      }
+
+      .cv-pdf {
+        width: 100%;
+        height: 100%;
+        border: none;
+        display: block;
+        background: #fff;
+      }
+
+      @media (max-width: 700px) {
+        .cv-panel-inner {
+          width: 100vw;
+        }
+
+        .cv-header {
+          height: 56px;
+          padding: 0 20px;
+        }
+      }
 
 
 
-    </style>
+         body {
+            background-color: #f4efeb;
+         }
+         ::selection {
+            background: #dcdcdc;
+            color: #000;
+         }
+      </style>
+   </head>
 
 
 
-</head>
-<body>
+   <body>
+      <div class="page">
 
-  <div class="page">
+         <!-- HERO -->
 
-    <!-- HERO -->
-<header class="hero">
+         <header class="hero">
+            <h1>Soheil<br />SARHANG ZADEH</h1>
 
-  <h1>Soheil<br>SARHANG ZADEH</h1>
+            <div class="contact">
+               <button class="copy-email" onclick="copyEmail()">
+                  soheil.sz@outlook.com
+               </button>
 
-<div class="contact">
-  <button class="copy-email" onclick="copyEmail()">soheil.sz@outlook.com</button>
+               <a>+33 07 68 98 02 00</a>
 
-  <a href=""tel:+33XXXXXXXXX"">+33 07 68 98 02 00</a>
+               <a
+                  href="https://www.linkedin.com/in/soheil-sz"
+                  target="_blank"
+                  rel="noopener">
+                  LinkedIn
+               </a>
 
-  <a href="https://www.linkedin.com/in/soheil-sarhang-zadeh" target="_blank" rel="noopener">
-    LinkedIn
-  </a>
-</div>
 
-  <p class="tagline">
-    Control theory · robotics · electrical engineering
-  </p>
+               <button class="cv-link" id="cvOpen">CV</button>
 
-</header>
-<section class="project">
 
-  <div class="project-title">
-    Field Oriented Control for 3D printers — work in progress
-  </div>
+            </div>
 
-  <div class="foc-layout">
+            <p class="tagline">
+               Control theory · robotics · embedded
+            </p>
+         </header>
 
-    <!-- LEFT: 1/3 + 2/3 -->
-    <div class="foc-left">
+         <!-- PROJECT 1 -->
 
-      <!-- 1/3 -->
-      <div class="tile transparent-bg">
-        <span class="num">001</span>
-        <img src="img/pos-plot.png" alt="">
+         <section class="project">
+            <div class="project-title">
+               Field Oriented Control for 3D printers — work in progress
+            </div>
+
+            <div class="foc-layout">
+               <!-- LEFT: 1/3 + 2/3 -->
+               <div class="foc-left">
+                  <!-- 1/3 -->
+                  <div class="tile transparent-bg">
+                     <span class="num">001</span>
+                     <img src="img/pos-plot.png" alt="" />
+                  </div>
+
+                  <!-- 2/3 -->
+                  <div class="tile transparent-bg">
+                     <span class="num">002</span>
+                     <img src="img/datasheet.png" alt="" />
+                  </div>
+               </div>
+
+               <!-- RIGHT: full height -->
+               <div class="tile">
+                  <span class="num">003</span>
+                  <img src="img/measure-3dp.jpeg" alt="" />
+               </div>
+            </div>
+
+            <div class="captions cols-2">
+               <div class="caption">
+                  <span class="meta">Software and design choices</span>
+                  <span class="name">
+                     Chose motor driver and interfaced with the printer's
+                     firmware
+                  </span>
+               </div>
+
+               <div class="caption">
+                  <span class="meta">Hardware</span>
+                  <span class="name">
+                     Designing 3D printed mount for encoder
+                  </span>
+               </div>
+            </div>
+
+            <p class="project-description">
+               Closed-loop control for 3D printer steppers.
+               I'm currently implementing FOC control for
+               3D printing   using STM32, SimpleFOC SDK, A4950 driver and
+               magnetic encoder. I derived the architecture from scratch, selected
+               the driver and encoder and I've developed the firmware interface with the printer's existing control system.
+               <br/> Waiting for some of the harware to arrive!
+
+            </p>
+         </section>
+
+         <!-- PROJECT 2 -->
+         <section class="project">
+            <div class="project-title">
+               Transformed a 3D printer into a PCB inspection machine
+            </div>
+
+            <div class="tiles cols-3">
+               <div class="tile">
+                  <span class="num">003</span>
+                  <img src="img/pick and place.jpeg" alt="" />
+               </div>
+               <div class="tile">
+                  <span class="num">004</span>
+                  <img src="img/microscope.jpeg" alt="" />
+               </div>
+               <div class="tile">
+                  <span class="num">005</span>
+                  <img src="img/rpi cam.jpeg" alt="" />
+               </div>
+            </div>
+
+            <div class="captions cols-3">
+               <div class="caption">
+                  <span class="meta">Assembly</span
+                  ><span class="name">Manual Pick and Place machine</span>
+               </div>
+               <div class="caption">
+                  <span class="meta">Previous solution</span
+                  ><span class="name">Manual Optical Inspection</span>
+               </div>
+               <div class="caption">
+                  <span class="meta">Delivered solution</span
+                  ><span class="name">Camera assembly scanning a board </span>
+               </div>
+            </div>
+            <p class="project-description">
+               At my last internship, I worked in a PCB fabrication lab, took
+               part in solder mask application and supervised the Pick and Place
+               machine and the reflow ovens.
+               <br/>
+
+               Next, I transformed a 3D printer gantry into an Automatic Optical
+               Inspection machine for the PCBs. I used a Raspberry Pi to
+               automate the S-curve movement and synchronized the gantry with the
+               camera. Precise control of the machine let us generate high
+                quality datasets for the ML team, and we reduced inspection times from 10 min/board to approx. 30 sec/board.
+            </p>
+         </section>
+
+         <!-- PROJECT 3 -->
+         <section class="project">
+            <div class="project-title">Audio amplifier board</div>
+
+            <div class="tiles cols-3 square">
+               <div class="tile">
+                  <span class="num">003</span>
+                  <img src="img/schematic.webp" alt="Schematic sent to fab" />
+               </div>
+               <div class="tile">
+                  <span class="num">004</span>
+                  <img src="img/render.png" alt="Populated amplifier PCB" />
+               </div>
+               <div class="tile">
+                  <span class="num">004</span>
+                  <img src="img/real.jpeg" alt="Completed speaker assembly" />
+               </div>
+            </div>
+
+            <div class="captions cols-3">
+               <div class="caption">
+                  <span class="meta">Schematic</span>
+                  <span class="name">Design sent for fabrication</span>
+               </div>
+
+               <div class="caption">
+                  <span class="meta">Schematic</span>
+                  <span class="name">Render of board</span>
+               </div>
+
+               <div class="caption">
+                  <span class="meta">Assembly</span>
+                  <span class="name">Populated board</span>
+               </div>
+            </div>
+
+            <p class="project-description">
+               I wanted to turn a vintage transistor radio into a Bluetooth
+               speaker, while conserving its outer appearance. To do that, I
+               designed my first PCB in EasyEDA, based around the TDA7379
+               amplifier chip. I then ordered the board and assembled it, and integrated
+               the Bluetooth and charging circuits.
+
+            </p>
+         </section>
+      </div>
+      <div
+         class="lightbox"
+         id="lightbox"
+         aria-hidden="true"
+         role="dialog"
+         aria-label="Image viewer"
+      >
+         <button
+            class="lightbox-close"
+            id="lightboxClose"
+            aria-label="Close"
+         ></button>
+         <img id="lightboxImg" src="" alt="" />
       </div>
 
-      <!-- 2/3 -->
-      <div class="tile transparent-bg">
-        <span class="num">002</span>
-        <img src="img/datasheet.png" alt="">
-      </div>
 
-    </div>
-
-    <!-- RIGHT: full height -->
-    <div class="tile">
-      <span class="num">003</span>
-      <img src="img/measure-3dp.jpeg" alt="">
-    </div>
-
-  </div>
-
-  <div class="captions cols-2">
-    <div class="caption">
-      <span class="meta">Software and design choices</span>
-      <span class="name">
-        Chose motor driver and interfaced with the printer's firmware
-      </span>
-    </div>
-
-    <div class="caption">
-      <span class="meta">Hardware</span>
-      <span class="name">
-        Designing 3D printed mount for encoder
-      </span>
-    </div>
-  </div>
-
-  <p class="project-description">
-    I'm currently implementing native closed loop stepper control for 3D printing.
-    Using STM32 and SimpleFOC SDK, A4950 driver and magnetic encoder.
-    Work in progress — This firmware interface is functional and the hardware arriving soon!
-  </p>
-
-</section>
+          <!---CV--->
 
 
-    <!-- PROJECT 2 -->
-    <section class="project">
-      <div class="project-title">Transformed a 3D printer into a PCB inspection machine</div>
 
-      <div class="tiles cols-3">
-        <div class="tile">
-          <span class="num">003</span>
-          <img src="img/pick and place.jpeg" alt="">
+            <div class="cv-panel" id="cvPanel" aria-hidden="true">
+
+        <div class="cv-panel-inner">
+
+          <div class="cv-header">
+            <span class="cv-title">Curriculum Vitae</span>
+
+            <button class="cv-close" id="cvClose">
+              Close
+            </button>
+          </div>
+
+          <iframe
+            class="cv-pdf"
+            src="cv.pdf"
+            title="Soheil Sarhang Zadeh — CV">
+          </iframe>
+
         </div>
-        <div class="tile">
-          <span class="num">004</span>
-          <img src="img/microscope.jpeg" alt="">
-        </div>
-        <div class="tile">
-          <span class="num">005</span>
-          <img src="img/rpi cam.jpeg" alt="">
-        </div>
+
       </div>
 
-      <div class="captions cols-3">
-        <div class="caption"><span class="meta">Assembly</span><span class="name">Manual Pick and Place machine</span></div>
-        <div class="caption"><span class="meta">Previous solution</span><span class="name">Manual Optical Inspection</span></div>
-        <div class="caption"><span class="meta">Delivered solution</span><span class="name">Camera assembly scanning a board </span></div>
-      </div>
-    </section>
-    <p class="project-description">
-      At my last internship, I observed a PCB fabrication lab, took part in solder mask application and supervised the Pick and Place machine and the reflow ovens.
-      <br>
 
-      Next, I transformed a 3D printer gantry into an Automatic Optical Inspection machine for the PCBs. I used a Raspberry Pi to automate the S-curve movement and synchronized it with the camera. Precise control of the machine let us generate high quality datasets for the ML team.
-  </section>
+      <script>
+         (function () {
+            var lb = document.getElementById("lightbox");
+            var lbImg = document.getElementById("lightboxImg");
+            var lbClose = document.getElementById("lightboxClose");
 
+            function open(src, alt) {
+               lbImg.src = src;
+               lbImg.alt = alt || "";
+               lb.classList.add("open");
+               lb.setAttribute("aria-hidden", "false");
+               document.body.classList.add("no-scroll");
+            }
 
-<!-- PROJECT 3 -->
-<section class="project">
-  <div class="project-title">Audio amplifier board</div>
+            function close() {
+               lb.classList.remove("open");
+               lb.setAttribute("aria-hidden", "true");
+               document.body.classList.remove("no-scroll");
+               // clear src after the fade so there's no flash on next open
+               setTimeout(function () {
+                  lbImg.src = "";
+               }, 240);
+            }
 
-  <div class="tiles cols-3 square">
-    <div class="tile">
-      <span class="num">003</span>
-      <img src="img/schematic.webp" alt="Schematic sent to fab">
-    </div>
-    <div class="tile">
-      <span class="num">004</span>
-      <img src="img/render.png" alt="Populated amplifier PCB">
-    </div>
-        <div class="tile">
-      <span class="num">004</span>
-      <img src="img/real.jpeg" alt="Completed speaker assembly">
-    </div>
-  </div>
+            // open when any image inside a .tile is clicked
+            document.querySelectorAll(".tile img").forEach(function (img) {
+               img.addEventListener("click", function () {
+                  open(img.currentSrc || img.src, img.alt);
+               });
+            });
 
-  <div class="captions cols-3">
-    <div class="caption">
-      <span class="meta">Schematic</span>
-      <span class="name">Design sent for fabrication</span>
-    </div>
+            // close: button, background click, or Escape
+            lbClose.addEventListener("click", close);
+            lb.addEventListener("click", function (e) {
+               if (e.target === lb) close();
+            });
+            document.addEventListener("keydown", function (e) {
+               if (e.key === "Escape" && lb.classList.contains("open")) close();
+            });
+         })();
+      </script>
 
-    <div class="caption">
-      <span class="meta">Schematic</span>
-      <span class="name">Render of board</span>
-    </div>
+      <script>
+         function copyEmail() {
+            const email = "soheil.sz@outlook.com";
+            const button = document.querySelector(".copy-email");
 
-    <div class="caption">
-      <span class="meta">Assembly</span>
-      <span class="name">Populated board</span>
-    </div>
+            navigator.clipboard.writeText(email);
 
-  </div>
+            button.textContent = "Copied!";
 
+            setTimeout(() => {
+               button.textContent = email;
+            }, 1500);
+         }
+      </script>
 
-  </p>
-</section>
-    <p class="project-description">
-      I wanted to turn a vintage transistor radio into a Bluetooth speaker, while conserving its outer appearance. To do that, I designed my first PCB in EasyEDA, based around the TDA7379 amplifier chip. I then ordered the board and soldered on the components and the auxiliary circuits (USB charging and Bluetooth module).
+      <script>
+      (function () {
+        const panel = document.getElementById("cvPanel");
+        const openButton = document.getElementById("cvOpen");
+        const closeButton = document.getElementById("cvClose");
 
-  </section>
+        function openCV() {
+          panel.classList.add("open");
+          panel.setAttribute("aria-hidden", "false");
+          document.body.classList.add("no-scroll");
+        }
 
-  </div>
-<div class="lightbox" id="lightbox" aria-hidden="true" role="dialog" aria-label="Image viewer">
-  <button class="lightbox-close" id="lightboxClose" aria-label="Close"></button>
-  <img id="lightboxImg" src="" alt="">
-</div>
-<script>
-  (function () {
-    var lb      = document.getElementById('lightbox');
-    var lbImg   = document.getElementById('lightboxImg');
-    var lbClose = document.getElementById('lightboxClose');
+        function closeCV() {
+          panel.classList.remove("open");
+          panel.setAttribute("aria-hidden", "true");
+          document.body.classList.remove("no-scroll");
+        }
 
-    function open(src, alt) {
-      lbImg.src = src;
-      lbImg.alt = alt || '';
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      document.body.classList.add('no-scroll');
-    }
+        openButton.addEventListener("click", openCV);
+        closeButton.addEventListener("click", closeCV);
 
-    function close() {
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-      document.body.classList.remove('no-scroll');
-      // clear src after the fade so there's no flash on next open
-      setTimeout(function () { lbImg.src = ''; }, 240);
-    }
+        panel.addEventListener("click", function (e) {
+          if (e.target === panel) {
+            closeCV();
+          }
+        });
 
-    // open when any image inside a .tile is clicked
-    document.querySelectorAll('.tile img').forEach(function (img) {
-      img.addEventListener('click', function () {
-        open(img.currentSrc || img.src, img.alt);
-      });
-    });
-
-    // close: button, background click, or Escape
-    lbClose.addEventListener('click', close);
-    lb.addEventListener('click', function (e) {
-      if (e.target === lb) close();
-    });
-    document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape' && lb.classList.contains('open')) close();
-    });
-  })();
-</script>
-
-<script>
-function copyEmail() {
-  const email = "soheil.sz@outlook.com";
-  const button = document.querySelector(".copy-email");
-
-  navigator.clipboard.writeText(email);
-
-  button.textContent = "Copied!";
-
-  setTimeout(() => {
-    button.textContent = email;
-  }, 1500);
-}
-</script>
+        document.addEventListener("keydown", function (e) {
+          if (e.key === "Escape" && panel.classList.contains("open")) {
+            closeCV();
+          }
+        });
+      })();
+     </script>
 
 
-</body>
+   </body>
 </html>
