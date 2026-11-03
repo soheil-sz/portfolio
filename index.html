@@ -489,63 +489,52 @@
             </p>
          </header>
 
-         <!-- PROJECT 1 -->
+<!-- PROJECT 1 -->
+      <section class="project">
+         <div class="project-title">
+            From scratch FOC controller for BLDC motors
+         </div>
 
-         <section class="project">
-            <div class="project-title">
-               Field Oriented Control for 3D printers — work in progress
+         <div class="tiles cols-3">
+            <div class="tile">
+               <span class="num">001</span>
+               <img src="img/motor bench.jpeg" alt="Motor test bench" />
             </div>
-
-            <div class="foc-layout">
-               <!-- LEFT: 1/3 + 2/3 -->
-               <div class="foc-left">
-                  <!-- 1/3 -->
-                  <div class="tile transparent-bg">
-                     <span class="num">001</span>
-                     <img src="img/pos-plot.png" alt="" />
-                  </div>
-
-                  <!-- 2/3 -->
-                  <div class="tile transparent-bg">
-                     <span class="num">002</span>
-                     <img src="img/datasheet.png" alt="" />
-                  </div>
-               </div>
-
-               <!-- RIGHT: full height -->
-               <div class="tile">
-                  <span class="num">003</span>
-                  <img src="img/measure-3dp.jpeg" alt="" />
-               </div>
+            <div class="tile">
+               <span class="num">002</span>
+               <img src="img/block diagram.png" alt="Simulink ADRC block diagram" />
             </div>
-
-            <div class="captions cols-2">
-               <div class="caption">
-                  <span class="meta">Software and design choices</span>
-                  <span class="name">
-                     Chose motor driver and interfaced with the printer's
-                     firmware
-                  </span>
-               </div>
-
-               <div class="caption">
-                  <span class="meta">Hardware</span>
-                  <span class="name">
-                     Designing 3D printed mount for encoder
-                  </span>
-               </div>
+            <div class="tile">
+               <span class="num">003</span>
+               <img src="img/measure-3dp.jpeg" alt="3D printed encoder mount" />
             </div>
+         </div>
 
-            <p class="project-description">
-               Closed-loop control for 3D printer steppers.
-               I'm currently implementing FOC control for
-               3D printing   using STM32, SimpleFOC SDK, A4950 driver and
-               magnetic encoder. I derived the architecture from scratch, selected
-               the driver and encoder and I've developed the firmware interface with the printer's existing control system.
-               <br/> Waiting for some of the harware to arrive!
+         <div class="captions cols-3">
+            <div class="caption">
+               <span class="meta">Hardware Setup</span>
+               <span class="name">Motor test bench and driver integration</span>
+            </div>
+            <div class="caption">
+               <span class="meta">Control Design</span>
+               <span class="name">Simulink model of ADRC & FOC algorithms</span>
+            </div>
+            <div class="caption">
+               <span class="meta">Mechanical Design</span>
+               <span class="name">3D printed mount for the magnetic encoder</span>
+            </div>
+         </div>
 
-            </p>
-         </section>
+         <p class="project-description">
+            Closed-loop control for 3D printer steppers.
+            I'm currently writing precision FOC control for
+            BLDC motors, using STM32, mosfet driver board and
+            magnetic encoder. I derived the FOC and ADRC algorithms from scratch and 
+            tested them in Simulink. Now, I have selected
+            the driver and encoder and I am developing the firmware
+            for STM32. 
+         </p>
+      </section>
 
          <!-- PROJECT 2 -->
          <section class="project">
